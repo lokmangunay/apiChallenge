@@ -25,7 +25,6 @@ public class BaseMethods {
     @BeforeTest
     public void setUp() {
         baseURI = "http://www.omdbapi.com/";
-
     }
 
 
