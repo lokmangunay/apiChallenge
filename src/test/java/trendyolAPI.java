@@ -22,8 +22,8 @@ public class trendyolAPI extends BaseMethods {
 
         String responseString = getMoviesAsString(movieName, apiKeyLokman);
 
-        int indexOfMovie=getIndexOfMovieFromArray(responseString,"Harry Potter and the Sorcerer's Stone");
-        String movieImdbId=getMovieImdbID(responseString,indexOfMovie);
+        int indexOfMovie = getIndexOfMovieFromArray(responseString, "Harry Potter and the Sorcerer's Stone");
+        String movieImdbId = getMovieImdbID(responseString, indexOfMovie);
 
         Response movieDetailsAsResponseAccordingToIMDBId = getMovieDetailsAsResponseAccordingToIMDBId(movieImdbId, apiKeyLokman);
 
@@ -34,8 +34,8 @@ public class trendyolAPI extends BaseMethods {
 
 
         System.out.println("Title:" + title +
-                              "\nYear: " + year +
-                                  "\nReleased" + released);
+                "\nYear: " + year +
+                "\nReleased" + released);
 
 
         System.out.println("-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" +
@@ -45,9 +45,6 @@ public class trendyolAPI extends BaseMethods {
                 "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
                 "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
     }
-
-
-
 
 
 }
