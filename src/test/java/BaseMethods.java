@@ -19,9 +19,6 @@ import static io.restassured.RestAssured.given;
 
 public class BaseMethods {
 
-    String apiKeyLokman = "a5ce9e6b";
-    String movieName = "harry potter";
-
     @BeforeTest
     public void setUp() {
         baseURI = "http://www.omdbapi.com/";
