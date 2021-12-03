@@ -1,20 +1,10 @@
-import com.trendyol.apitest.BaseTest;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import jdk.nashorn.internal.parser.JSONParser;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 import org.json.*;
 import org.testng.asserts.Assertion;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class trendyolAPI extends BaseMethods {
@@ -34,20 +24,19 @@ public class trendyolAPI extends BaseMethods {
         Response movieDetailsAsResponseAccordingToIMDBId = getMovieDetailsAsResponseAccordingToIMDBId(movieImdbId, apiKeyLokman);
 
         JSONObject movieDetailsObj = new JSONObject(movieDetailsAsResponseAccordingToIMDBId.asString());
-        String title = getKeyValueFromJSON(movieDetailsObj, "Title");
-        String year = getKeyValueFromJSON(movieDetailsObj, "Year");
-        String released = getKeyValueFromJSON(movieDetailsObj, "Released");
+        String title = getKeyValueFromJSONObj(movieDetailsObj, "Title");
+        String year = getKeyValueFromJSONObj(movieDetailsObj, "Year");
+        String released = getKeyValueFromJSONObj(movieDetailsObj, "Released");
 
 
 
-        System.out.println("ImbdID: " +movieImdbId+
+        logger.info("\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
+                            "\nImbdID: " +movieImdbId+
                              "\nTitle:" + title +
                               "\nYear: " + year +
-                             "\nReleased" + released);
-
-
-        System.out.println("-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" +
-
+                             "\nReleased" + released+
+                                        "\n-------------------------------------\n \n" +
+                            "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
                 "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
                 "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
                 "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
@@ -58,6 +47,7 @@ public class trendyolAPI extends BaseMethods {
         assertion.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(),200);
         assertion.assertEquals(year,"2002");
         assertion.assertEquals(title,specificMovieName);
+
     }
 
 

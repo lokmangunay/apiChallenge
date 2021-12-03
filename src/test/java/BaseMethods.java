@@ -1,23 +1,15 @@
-import com.trendyol.apitest.BaseTest;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import jdk.nashorn.internal.parser.JSONParser;
-
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.logging.Logger;
 
 import org.json.*;
 
 import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
 
 public class BaseMethods {
+    final static Logger logger = Logger.getLogger(String.valueOf(BaseMethods.class)); //logger object
 
     @BeforeTest
     public void setUp() {
@@ -44,7 +36,7 @@ public class BaseMethods {
         return response;
     }
 
-    public String getKeyValueFromJSON(JSONObject jsonObject, String keyValue) {
+    public String getKeyValueFromJSONObj(JSONObject jsonObject, String keyValue) {
         return jsonObject.getString(keyValue);
 
     }
@@ -56,15 +48,16 @@ public class BaseMethods {
         int counter = 0;
         for (int i = 0; i < arr.length(); i++) {
             movieObj = arr.getJSONObject(i);
-            String movieTitle = getKeyValueFromJSON(movieObj, "Title");
+            String movieTitle = getKeyValueFromJSONObj(movieObj, "Title");
             if (movieTitle.equals(nameOfMovie)) {
-                System.out.println(movieObj);
+                logger.info("\n---------MOVIE DETAILS--------\n"+
+                        movieObj.toString(4) +"\n \n");  // the value of 4 makes the json object prettier
                 break;
             } else {
                 counter++;
             }
         }
-        return counter;
+        return counter;  //counter value gives the index of the desired movie in the array that is in response
     }
 
     public String getMovieImdbID(String response, int movieIndex) {
@@ -72,7 +65,7 @@ public class BaseMethods {
         JSONArray arr = obj.getJSONArray("Search");
         JSONObject movieObj;
         movieObj = arr.getJSONObject(movieIndex);
-        String movieImdbId = getKeyValueFromJSON(movieObj, "imdbID");
+        String movieImdbId = getKeyValueFromJSONObj(movieObj, "imdbID");
 
         return movieImdbId;
 
