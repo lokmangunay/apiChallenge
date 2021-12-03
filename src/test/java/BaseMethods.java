@@ -50,8 +50,8 @@ public class BaseMethods {
             movieObj = arr.getJSONObject(i);
             String movieTitle = getKeyValueFromJSONObj(movieObj, "Title");
             if (movieTitle.equals(nameOfMovie)) {
-                logger.info("\n---------MOVIE DETAILS--------\n"+
-                        movieObj.toString(4) +"\n \n");  // the value of 4 makes the json object prettier
+                logger.info("\n---------MOVIE DETAILS--------\n" +
+                        movieObj.toString(4) + "\n \n");  // the value of 4 makes the json object prettier
                 break;
             } else {
                 counter++;
@@ -66,7 +66,7 @@ public class BaseMethods {
         JSONObject movieObj;
         movieObj = arr.getJSONObject(movieIndex);
         String movieImdbId = getKeyValueFromJSONObj(movieObj, "imdbID");
-        logger.info("imdbID for "+getKeyValueFromJSONObj(movieObj,"Title")+" is taken");
+        logger.info("imdbID for " + getKeyValueFromJSONObj(movieObj, "Title") + " is taken");
 
 
         return movieImdbId;

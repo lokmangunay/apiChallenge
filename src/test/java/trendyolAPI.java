@@ -11,7 +11,7 @@ public class trendyolAPI extends BaseMethods {
 
     String apiKeyLokman = "a5ce9e6b";
     String movieName = "lord of the rings";
-    String specificMovieName="The Lord of the Rings: The Two Towers";
+    String specificMovieName = "The Lord of the Rings: The Two Towers";
 
     @Test
     public void bySearch() {
@@ -29,27 +29,25 @@ public class trendyolAPI extends BaseMethods {
         String released = getKeyValueFromJSONObj(movieDetailsObj, "Released");
 
 
-
         logger.info("\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
-                            "\nImbdID: " +movieImdbId+
-                             "\nTitle:" + title +
-                              "\nYear: " + year +
-                             "\nReleased: " + released+
-                                        "\n-------------------------------------\n \n" +
-                            "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
+                "\nImbdID: " + movieImdbId +
+                "\nTitle:" + title +
+                "\nYear: " + year +
+                "\nReleased: " + released +
+                "\n-------------------------------------\n \n" +
+                "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
                 "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
                 "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
                 "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
 
 
-        Assertion assertion=new Assertion();
+        Assertion assertion = new Assertion();
 
-        assertion.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(),200);
-        assertion.assertEquals(year,"2002");
-        assertion.assertEquals(title,specificMovieName);
+        assertion.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(), 200);
+        assertion.assertEquals(year, "2002");
+        assertion.assertEquals(title, specificMovieName);
 
     }
-
 
 
 }
