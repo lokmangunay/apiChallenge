@@ -41,7 +41,7 @@ public class BaseMethods {
 
     }
 
-    public int getIndexOfMovieFromArray(String response, String nameOfMovie) {
+    public int getIndexOfMovieFromArray(String response, String nameOfMovie) {   // in this method,
         JSONObject obj = new JSONObject(response);
         JSONArray arr = obj.getJSONArray("Search");
         JSONObject movieObj;
@@ -66,6 +66,8 @@ public class BaseMethods {
         JSONObject movieObj;
         movieObj = arr.getJSONObject(movieIndex);
         String movieImdbId = getKeyValueFromJSONObj(movieObj, "imdbID");
+        logger.info("imdbID for "+getKeyValueFromJSONObj(movieObj,"Title")+" is taken");
+
 
         return movieImdbId;
 

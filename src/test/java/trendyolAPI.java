@@ -34,7 +34,7 @@ public class trendyolAPI extends BaseMethods {
                             "\nImbdID: " +movieImdbId+
                              "\nTitle:" + title +
                               "\nYear: " + year +
-                             "\nReleased" + released+
+                             "\nReleased: " + released+
                                         "\n-------------------------------------\n \n" +
                             "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
                 "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
