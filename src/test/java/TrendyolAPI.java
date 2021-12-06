@@ -1,27 +1,23 @@
 import io.restassured.response.Response;
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import org.json.*;
-import org.testng.asserts.Assertion;
 
-import static io.restassured.RestAssured.given;
+import static com.trendyol.apitest.config.Constants.*;
 
-public class trendyolAPI extends BaseMethods {
+public class TrendyolAPI extends BaseMethods {
 
-    String apiKeyLokman = "a5ce9e6b";
-    String movieName = "lord of the rings";
-    String specificMovieName = "The Lord of the Rings: The Two Towers";
+
 
     @Test
     public void bySearch() {
 
-        String responseString = getMoviesAsString(movieName, apiKeyLokman);
+        String responseString = getMoviesAsString(MOVIE_NAME, API_KEY_LOKMAN);
 
-        int indexOfMovie = getIndexOfMovieFromArray(responseString, specificMovieName);
+        int indexOfMovie = getIndexOfMovieFromArray(responseString, FULL_MOVIE_NAME);
         String movieImdbId = getMovieImdbID(responseString, indexOfMovie);
 
-        Response movieDetailsAsResponseAccordingToIMDBId = getMovieDetailsAsResponseAccordingToIMDBId(movieImdbId, apiKeyLokman);
+        Response movieDetailsAsResponseAccordingToIMDBId = getMovieDetailsAsResponseAccordingToIMDBId(movieImdbId, API_KEY_LOKMAN);
 
         JSONObject movieDetailsObj = new JSONObject(movieDetailsAsResponseAccordingToIMDBId.asString());
         String title = getKeyValueFromJSONObj(movieDetailsObj, "Title");
@@ -41,11 +37,9 @@ public class trendyolAPI extends BaseMethods {
                 "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
 
 
-        Assertion assertion = new Assertion();
-
-        assertion.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(), 200);
-        assertion.assertEquals(year, "2002");
-        assertion.assertEquals(title, specificMovieName);
+        Assert.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(), 200);
+        Assert.assertEquals(year, "2002");
+        Assert.assertEquals(title, FULL_MOVIE_NAME);
 
     }
 
