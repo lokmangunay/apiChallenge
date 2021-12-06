@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.json.*;
 
+import static com.trendyol.apitest.config.Constants.*;
 import static io.restassured.RestAssured.baseURI;
 
 public class BaseMethods {
@@ -13,35 +14,33 @@ public class BaseMethods {
 
     @BeforeTest
     public void setUp() {
-        baseURI = "http://www.omdbapi.com/";
+        baseURI = BASEURI;
     }
 
 
-    public String getMoviesAsString(String nameOfMovie, String apiKey) {
+    protected String getMoviesAsString(String nameOfMovie, String apiKey) {
 
         Response response = RestAssured.get("?s=" + nameOfMovie + "&apikey=" + apiKey);
-        String moviesAsString = response.asString();
-
-        return moviesAsString;
+        return response.asString();
 
     }
 
-    public Response getMoviesAsResponse(String nameOfMovie, String apiKey) {
+    protected Response getMoviesAsResponse(String nameOfMovie, String apiKey) {
         Response response = RestAssured.get("?s=" + nameOfMovie + "&apikey=" + apiKey);
         return response;
     }
 
-    public Response getMovieDetailsAsResponseAccordingToIMDBId(String imdbID, String apiKey) {
+    protected Response getMovieDetailsAsResponseAccordingToIMDBId(String imdbID, String apiKey) {
         Response response = RestAssured.get("?i=" + imdbID + "&apikey=" + apiKey);
         return response;
     }
 
-    public String getKeyValueFromJSONObj(JSONObject jsonObject, String keyValue) {
+    protected String getKeyValueFromJSONObj(JSONObject jsonObject, String keyValue) {
         return jsonObject.getString(keyValue);
 
     }
 
-    public int getIndexOfMovieFromArray(String response, String nameOfMovie) {   // in this method,
+    protected int getIndexOfMovieFromArray(String response, String nameOfMovie) {   // in this method,
         JSONObject obj = new JSONObject(response);
         JSONArray arr = obj.getJSONArray("Search");
         JSONObject movieObj;
@@ -60,7 +59,7 @@ public class BaseMethods {
         return counter;  //counter value gives the index of the desired movie in the array that is in response
     }
 
-    public String getMovieImdbID(String response, int movieIndex) {
+    protected String getMovieImdbID(String response, int movieIndex) {
         JSONObject obj = new JSONObject(response);
         JSONArray arr = obj.getJSONArray("Search");
         JSONObject movieObj;
