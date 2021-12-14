@@ -3,9 +3,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.json.*;
 
-import static com.trendyol.apitest.config.Constants.*;
+import static com.gunay.apitest.config.Constants.*;
 
-public class TrendyolAPI extends BaseMethods {
+public class TestWithRestAssured extends BaseMethods {
 
 
 
@@ -25,17 +25,35 @@ public class TrendyolAPI extends BaseMethods {
         String released = getKeyValueFromJSONObj(movieDetailsObj, "Released");
 
 
-        logger.info("\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
+        logger.info(
+                "\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
                 "\nImbdID: " + movieImdbId +
                 "\nTitle:" + title +
                 "\nYear: " + year +
                 "\nReleased: " + released +
+
                 "\n-------------------------------------\n \n" +
+
+
                 "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
                 "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
                 "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
                 "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
 
+        System.out.println(
+                "\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
+                        "\nImbdID: " + movieImdbId +
+                        "\nTitle:" + title +
+                        "\nYear: " + year +
+                        "\nReleased: " + released +
+
+                        "\n-------------------------------------\n \n" +
+
+
+                        "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
+                        "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
+                        "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
+                        "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
 
         Assert.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(), 200);
         Assert.assertEquals(year, "2002");

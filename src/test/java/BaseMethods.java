@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import org.json.*;
 
-import static com.trendyol.apitest.config.Constants.*;
+import static com.gunay.apitest.config.Constants.*;
 import static io.restassured.RestAssured.baseURI;
 
 public class BaseMethods {
@@ -14,7 +14,7 @@ public class BaseMethods {
 
     @BeforeTest
     public void setUp() {
-        baseURI = BASEURI;
+        baseURI = BASE_URI;
     }
 
 
