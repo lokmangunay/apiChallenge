@@ -10,7 +10,6 @@ import static com.gunay.apitest.config.Constants.*;
 public class TestWithRestAssured extends BaseMethods {
 
 
-
     @Test
     public void bySearch() {
 
@@ -22,43 +21,30 @@ public class TestWithRestAssured extends BaseMethods {
         Response movieDetailsAsResponseAccordingToIMDBId = getMovieDetailsAsResponseAccordingToIMDBId(movieImdbId, API_KEY_LOKMAN);
 
         JSONObject movieDetailsObj = new JSONObject(movieDetailsAsResponseAccordingToIMDBId.asString());
+
         String title = getKeyValueFromJSONObj(movieDetailsObj, "Title");
         String year = getKeyValueFromJSONObj(movieDetailsObj, "Year");
         String released = getKeyValueFromJSONObj(movieDetailsObj, "Released");
 
 
         logger.info(
-                "\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
-                "\nImbdID: " + movieImdbId +
-                "\nTitle:" + title +
-                "\nYear: " + year +
-                "\nReleased: " + released +
-
-                "\n-------------------------------------\n \n" +
-
-
-                "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
-                "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
-                "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
-                "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
-
-        System.out.println(
-                "\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE--------------" +
+                "\n \n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE-------------" +
                         "\nImbdID: " + movieImdbId +
                         "\nTitle:" + title +
                         "\nYear: " + year +
                         "\nReleased: " + released +
+                        "\n---------------KEY VALUES THAT EXTRACTED FROM RESPONSE-------------" + "\n " + "\n" +
 
-                        "\n-------------------------------------\n \n" +
 
-
-                        "\n-*--*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*" +
+                        "\n-*--*-*-*-*-*-*-*-*-*-*-*-*-RESPONSE RESULTS-*-*-*-*-*-*-*-*-*-*-*-*-*-*" +
                         "\nStatus code: " + movieDetailsAsResponseAccordingToIMDBId.getStatusCode() +
                         "\nStatus line: " + movieDetailsAsResponseAccordingToIMDBId.getStatusLine() +
-                        "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime());
+                        "\nTime: " + movieDetailsAsResponseAccordingToIMDBId.getTime() +
+                        "\n-*--*-*-*-*-*--*-*-*-*-*-*-*RESPONSE RESULTS-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+
 
         Assert.assertEquals(movieDetailsAsResponseAccordingToIMDBId.getStatusCode(), 200);
-        Assert.assertEquals(year, "2002");
+        Assert.assertEquals(year, "2013");
         Assert.assertEquals(title, FULL_MOVIE_NAME);
 
     }
